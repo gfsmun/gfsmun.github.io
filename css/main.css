@@ -545,7 +545,7 @@ h4 {
 /* Mobile: no text highlight on tap/selection */
 @media (max-width: 768px) {
   * { -webkit-tap-highlight-color: transparent; }
-  button, a, .gallery-item, .team-card, .nav__link, .mobile-menu__link, .gallery-edition__cover, .page-hero__inner, .btn {
+  button, a, .team-card, .nav__link, .mobile-menu__link, .gallery-edition__cover, .page-hero__inner, .btn {
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;

@@ -442,12 +442,20 @@
   }
 
   triggers.forEach((btn) => {
-    btn.addEventListener("click", () => {
+    const handler = (e) => {
+      // Prevent double-trigger on touch devices and ensure gallery-item is interactive
+      if (e.type === 'touchend') e.preventDefault();
       const group = btn.getAttribute("data-gallery");
       const idx = parseInt(btn.getAttribute("data-index") || "0", 10);
       openLightbox(group, idx);
-    });
+    };
+    btn.addEventListener("click", handler);
+    btn.addEventListener("touchend", handler, { passive: false });
+    // Ensure button is not blocked by mobile tap highlight CSS
+    btn.style.touchAction = 'manipulation';
   });
+  // Debug: log triggers found (helps diagnose blank selector)
+  // console.log('[GFSMUN] Lightbox triggers', triggers.length, groups);
 
   if (prevBtn) prevBtn.addEventListener("click", prev);
   if (nextBtn) nextBtn.addEventListener("click", next);
